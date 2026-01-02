@@ -291,22 +291,6 @@ later(function()
   vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
 end)
 
--- Work with diff hunks that represent the difference between the buffer text and
--- some reference text set by a source. Default source uses text from Git index.
--- Also provides summary info used in developer section of 'mini.statusline'.
--- Example usage:
--- - `ghip` - apply hunks (`gh`) within *i*nside *p*aragraph
--- - `gHG` - reset hunks (`gH`) from cursor until end of buffer (`G`)
--- - `ghgh` - apply (`gh`) hunk at cursor (`gh`)
--- - `gHgh` - reset (`gH`) hunk at cursor (`gh`)
--- - `<Leader>go` - toggle overlay
---
--- See also:
--- - `:h MiniDiff-overview` - overview of how module works
--- - `:h MiniDiff-diff-summary` - available summary information
--- - `:h MiniDiff.gen_source` - available built-in sources
-later(function() require('mini.diff').setup() end)
-
 -- Navigate and manipulate file system
 --
 -- See also:
@@ -360,13 +344,15 @@ end)
 --
 -- See also:
 -- - `:h MiniIndentscope.gen_animation` - available animation rules
-later(function() require('mini.indentscope').setup(
-  {
-    draw = {
-      animation = require('mini.indentscope').gen_animation.none()
-    }
-  }
-) end)
+later(
+  function()
+    require('mini.indentscope').setup({
+      draw = {
+        animation = require('mini.indentscope').gen_animation.none(),
+      },
+    })
+  end
+)
 
 -- Jump within visible lines to pre-defined spots via iterative label filtering.
 -- See also:
@@ -525,4 +511,3 @@ later(function() require('mini.surround').setup() end)
 -- to reduce noise when typing. Example usage:
 -- - `<Leader>ot` - trim all trailing whitespace in a buffer
 later(function() require('mini.trailspace').setup() end)
-

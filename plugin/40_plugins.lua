@@ -115,19 +115,25 @@ MiniDeps.now(function()
   require('catppuccin').setup({
     flavour = 'mocha',
     dim_inactive = {
-      enabled = true
-    }
+      enabled = true,
+    },
   })
   vim.cmd('colorscheme catppuccin')
 end)
 
 -- Neogit =====================================================================
-later(function ()
-  add({ 
+later(function()
+  add({
     source = 'NeogitOrg/neogit',
-    depends = { 'nvim-lua/plenary.nvim' }
+    depends = { 'nvim-lua/plenary.nvim' },
   })
-  local neogit = require('neogit')
-  neogit.setup()
-  vim.keymap.set("n", "<leader>gg", neogit.open, { desc = "Open Neogit UI" })
+  require('neogit').setup()
+end)
+
+-- Gitsigns ===================================================================
+later(function()
+  add({
+    source = 'lewis6991/gitsigns.nvim',
+  })
+  require('gitsigns').setup({})
 end)
