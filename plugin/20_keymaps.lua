@@ -47,11 +47,15 @@ _G.Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>o', desc = '+Other' },
   { mode = 'n', keys = '<Leader>s', desc = '+Session' },
   { mode = 'n', keys = '<Leader>t', desc = '+Terminal' },
-  { mode = 'n', keys = '<Leader>v', desc = '+Visits' },
-
   { mode = 'x', keys = '<Leader>g', desc = '+Git' },
   { mode = 'x', keys = '<Leader>l', desc = '+Language' },
 }
+
+-- Window menu
+-- See: https://github.com/nvim-mini/mini.nvim/discussions/2028#discussioncomment-14593098
+vim.keymap.set('n', '<leader>w', function()
+  vim.api.nvim_input '<C-w>'
+end, { desc = '+Window' })
 
 -- Helpers for a more concise `<Leader>` mappings.
 -- Most of the mappings use `<Cmd>...<CR>` string as a right hand side (RHS) in
@@ -160,15 +164,6 @@ nmap_leader('ls', '<Cmd>lua vim.lsp.buf.definition()<CR>',      'Source definiti
 nmap_leader('lt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type definition')
 
 xmap_leader('lf', formatting_cmd, 'Format selection')
-
--- m is for 'Map'. Common usage:
--- - `<Leader>mt` - toggle map from 'mini.map' (closed by default)
--- - `<Leader>mf` - focus on the map for fast navigation
--- - `<Leader>ms` - change map's side (if it covers something underneath)
-nmap_leader('mf', '<Cmd>lua MiniMap.toggle_focus()<CR>', 'Focus (toggle)')
-nmap_leader('mr', '<Cmd>lua MiniMap.refresh()<CR>',      'Refresh')
-nmap_leader('ms', '<Cmd>lua MiniMap.toggle_side()<CR>',  'Side (toggle)')
-nmap_leader('mt', '<Cmd>lua MiniMap.toggle()<CR>',       'Toggle')
 
 -- o is for 'Other'. Common usage:
 -- - `<Leader>oz` - toggle between "zoomed" and regular view of current buffer
