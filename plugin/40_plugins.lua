@@ -110,8 +110,8 @@ now_if_args(function()
 end)
 
 -- Catppuccin =================================================================
-MiniDeps.now(function()
-  add({ source = 'catpuccin/nvim', name = 'catppuccin' })
+now_if_args(function()
+  add({ source = "catppuccin/nvim", name = "catppuccin" })
   require('catppuccin').setup({
     flavour = 'mocha',
     dim_inactive = {
