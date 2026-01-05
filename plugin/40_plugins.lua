@@ -119,8 +119,12 @@ now_if_args(function()
   add({ source = "catppuccin/nvim", name = "catppuccin" })
   require('catppuccin').setup({
     flavour = 'mocha',
+    transparent_background = true,
     dim_inactive = {
       enabled = true,
+    },
+    float = {
+      transparent = true,
     },
   })
   vim.cmd('colorscheme catppuccin')
@@ -142,3 +146,13 @@ later(function()
   })
   require('gitsigns').setup({})
 end)
+
+-- claudecode =================================================================
+later(function ()
+  add({
+    source = 'coder/claudecode.nvim',
+    depends = { 'folke/snacks.nvim' },
+  })
+  require('claudecode').setup({})
+end
+)

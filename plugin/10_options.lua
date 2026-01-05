@@ -25,8 +25,6 @@ vim.o.undofile    = true           -- Enable persistent undo
 
 vim.o.shada = "'100,<50,s10,:1000,/100,@100,h" -- Limit ShaDa file (for startup)
 
-vim.opt.clipboard = 'unnamedplus'
-
 -- Enable all filetype plugins and syntax (if not enabled, for better startup)
 vim.cmd('filetype plugin indent on')
 if vim.fn.exists('syntax_on') ~= 1 then vim.cmd('syntax enable') end
@@ -47,7 +45,7 @@ vim.o.signcolumn     = 'yes'      -- Always show signcolumn (less flicker)
 vim.o.splitbelow     = true       -- Horizontal splits will be below
 vim.o.splitkeep      = 'screen'   -- Reduce scroll during window split
 vim.o.splitright     = true       -- Vertical splits will be to the right
-vim.o.winborder      = 'single'   -- Use border in floating windows
+vim.o.winborder      = 'rounded'  -- Use border in floating windows
 vim.o.wrap           = false      -- Don't visually wrap lines (toggle with \w)
 
 vim.o.cursorlineopt  = 'screenline,number' -- Show cursor line per screen line

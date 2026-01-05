@@ -38,6 +38,7 @@ nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 -- This is used to provide 'mini.clue' with extra clues.
 -- Add an entry if you create a new group.
 _G.Config.leader_group_clues = {
+  { mode = 'n', keys = '<Leader>a', desc = '+AI' },
   { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
   { mode = 'n', keys = '<Leader>e', desc = '+Explore/Edit' },
   { mode = 'n', keys = '<Leader>f', desc = '+Find' },
@@ -48,14 +49,11 @@ _G.Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>s', desc = '+Session' },
   { mode = 'n', keys = '<Leader>t', desc = '+Terminal' },
   { mode = 'x', keys = '<Leader>g', desc = '+Git' },
-  { mode = 'x', keys = '<Leader>l', desc = '+Language' },
 }
 
--- Window menu
--- See: https://github.com/nvim-mini/mini.nvim/discussions/2028#discussioncomment-14593098
-vim.keymap.set('n', '<leader>w', function()
-  vim.api.nvim_input '<C-w>'
-end, { desc = '+Window' })
+-- Comodities
+vim.keymap.set({'n', 'x'}, '<Leader>y', '"y', { desc = "Yank" })
+vim.keymap.set({'n', 'x'}, '<Leader>d', '"d', { desc = "Cut" })
 
 -- Helpers for a more concise `<Leader>` mappings.
 -- Most of the mappings use `<Cmd>...<CR>` string as a right hand side (RHS) in
@@ -68,6 +66,11 @@ end
 local xmap_leader = function(suffix, rhs, desc)
   vim.keymap.set('x', '<Leader>' .. suffix, rhs, { desc = desc })
 end
+
+-- a is for 'AI'
+nmap_leader('ac', ':ClaudeCode<CR>', 'Toggle Claude')
+nmap_leader('af', ':ClaudeCodeFocus<CR>', 'Focus Claude')
+nmap_leader('ar', ':ClaudeCode --resume<CR>', 'Resume Claude')
 
 -- b is for 'Buffer'. Common usage:
 -- - `<Leader>bs` - create scratch (temporary) buffer
