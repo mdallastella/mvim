@@ -83,6 +83,7 @@ now_if_args(function()
   vim.lsp.enable({
     'lua_ls',
     'basedpyright',
+    'ruff',
   })
 end)
 
@@ -104,7 +105,10 @@ later(function()
   require('conform').setup({
     -- Map of filetype to formatters
     -- Make sure that necessary CLI tool is available
-    formatters_by_ft = { lua = { 'stylua' } },
+    formatters_by_ft = { 
+      lua = { 'stylua' },
+      python = { 'ruff' }
+    },
   })
 end)
 
